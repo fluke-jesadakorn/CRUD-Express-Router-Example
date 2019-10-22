@@ -1,19 +1,28 @@
 const express = require('express')
 const app = express()
+const router = express.Router()
+const port = 5000
 
-app.route('/api')
-.get('/',async (req,res) => {
+router.get('/', async (req,res,next) => {
+    res.send("Fuckyou")
+})
+router.get('/:id', async (req,res,next) => {
     res.send(res)
 })
-.get('/:id',async (req,res) => {
+router.post('/', async(req,res,next) => {
+    res.send("post")
+})
+router.patch('/:id', async (req,res,next) => {
     res.send(res)
 })
-.post('/:id',async(req,res) => {
+router.delete('/:id', async (req,res,next) => {
     res.send(res)
 })
-.patch('/',async (req,res) => {
-    res.send(res)
+
+app.use('/api', router)
+
+app.listen(port,()=>{
+    console.log(`listen on Port : ${port}`)
 })
-.delete('/:id',async (req,res) => {
-    res.send(res)
-})
+
+module.exports = router
